@@ -11,6 +11,21 @@
   const behavior = reduceMotion ? 'auto' : 'smooth';
   const waLink = (text) => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`;
 
+  // Events for Google Tag Manager. No personal data (name, phone) is ever pushed.
+  const pushEvent = (event, params = {}) => {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event, ...params });
+  };
+
+  // WhatsApp and phone-call clicks anywhere on the page
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a[href]');
+    if (!link) return;
+    const href = link.getAttribute('href');
+    if (href.startsWith('tel:')) pushEvent('click_call');
+    else if (href.includes('wa.me/')) pushEvent('click_whatsapp');
+  });
+
   // Footer year
   const year = $('#year');
   if (year) year.textContent = new Date().getFullYear();
@@ -82,6 +97,7 @@
     const service = form.elements.service.value;
     const message = `السلام عليكم، أنا ${name}.\nرقم جوالي: ${phone}\nأرغب في حجز استشارة بخصوص: ${service}`;
 
+    pushEvent('generate_lead', { service });
     const win = window.open(waLink(message), '_blank', 'noopener');
     if (!win) window.location.href = waLink(message);
     status.textContent = 'تم فتح واتساب. أرسل الرسالة لإتمام طلبك.';
