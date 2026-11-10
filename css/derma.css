@@ -1,0 +1,133 @@
+/* ==========================================================
+   Dermatology & cosmetic page — extends style.css
+   ========================================================== */
+
+/* ---------- Hero: copy + service index ---------- */
+.derma-hero-grid {
+  display: grid; grid-template-columns: 1.1fr .9fr; align-items: center;
+  gap: clamp(32px, 6vw, 96px);
+}
+
+.hero-index {
+  padding: clamp(20px, 3vw, 32px);
+  border: 1px solid var(--line-light); border-radius: 24px;
+  background: rgba(255, 255, 255, .05);
+}
+.hero-index-title {
+  margin-bottom: .5rem;
+  font-family: var(--f-display); font-weight: 700; font-size: 1.15rem; color: var(--mint);
+}
+.hero-index ul { list-style: none; margin: 0; padding: 0; }
+.hero-index li { border-bottom: 1px solid var(--line-light); }
+.hero-index li:last-child { border-bottom: 0; }
+.hero-index a {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: .95rem 0; text-decoration: none;
+  font-family: var(--f-display); font-weight: 600; font-size: 1.05rem; line-height: 1.5;
+  color: #fff; transition: color .2s;
+}
+.hero-index a:hover { color: var(--mint); }
+.hero-index .chev { border-color: var(--line-light); }
+.hero-index a:hover .chev, .hero-index a:focus-visible .chev { background: var(--mint); border-color: var(--mint); color: var(--ink); }
+
+/* ---------- Service sections ---------- */
+.svc-grid {
+  display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+  align-items: start; gap: clamp(32px, 6vw, 80px);
+}
+.svc-copy p { max-width: 34em; margin-top: 1.1rem; }
+.svc-copy .section-title + p { margin-top: 1.4rem; }
+.svc-copy .lead-in { font-weight: 600; color: var(--ink); }
+.svc-copy .btn { margin-top: 1.75rem; }
+
+.checks { list-style: none; margin: .6rem 0 0; padding: 0; max-width: 34em; }
+.checks li {
+  position: relative; padding: .55rem 2rem .55rem 0;
+  border-bottom: 1px solid var(--line); line-height: 1.7;
+}
+.checks li:first-child { border-top: 1px solid var(--line); }
+.checks li::before {
+  content: ""; position: absolute; inset-inline-start: 0; top: 1rem;
+  width: 20px; height: 20px;
+  background: var(--mint-deep);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.checks + p { margin-top: 1.4rem; }
+
+/* Offer posters (portrait 4:5) */
+.media {
+  display: grid; grid-template-columns: repeat(var(--n, 1), minmax(0, 1fr));
+  gap: 14px; max-width: calc(var(--n, 1) * 300px);
+}
+.media--solo { max-width: 340px; justify-self: center; }
+.media-item, .results-item {
+  display: block; width: 100%; padding: 0; border: 0;
+  background: var(--ink); cursor: zoom-in; overflow: hidden;
+}
+.media-item { aspect-ratio: 4 / 5; border-radius: 16px; }
+.media-item img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Before / after */
+.results { margin-top: clamp(40px, 6vw, 72px); }
+.results h3 { margin-bottom: 1.1rem; font-size: clamp(1.3rem, 2.6vw, 1.7rem); }
+.results-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+.results-item { flex: 0 0 calc((100% - 28px) / 3); aspect-ratio: 630 / 354; border-radius: 12px; }
+.results-item img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Booking form at the end of each service */
+.svc-book {
+  grid-column: 1 / -1; /* spans both columns when the section itself is the grid */
+  margin-top: clamp(36px, 5vw, 64px);
+  padding: clamp(20px, 3vw, 32px);
+  border-radius: 24px; background: var(--paper);
+  box-shadow: 0 0 0 1px var(--line);
+}
+.svc:not(.section--mist) .svc-book { background: var(--mist); box-shadow: none; }
+.svc-book-head {
+  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between;
+  gap: .15rem 1.5rem; margin-bottom: 1.25rem;
+}
+.svc-book-head h3 { font-size: 1.35rem; }
+.svc-book-head p { color: var(--muted); font-size: .95rem; }
+.book-form--inline { grid-template-columns: 1fr 1fr auto; }
+
+/* ---------- Footer ---------- */
+.footer-grid {
+  display: grid; grid-template-columns: 1.2fr 1fr; gap: 1.5rem 3rem;
+  padding-bottom: 24px; margin-bottom: 20px; border-bottom: 1px solid var(--line-light);
+}
+.footer-grid b { font-family: var(--f-display); font-size: 1.1rem; color: #fff; }
+.footer-grid p { margin-top: .4rem; max-width: 26em; line-height: 1.8; }
+.footer-links { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
+.footer-links a { text-decoration: none; }
+.footer-links a:hover { color: var(--mint); }
+.footer-base { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 2rem; }
+/* style.css lays the footer out as a flex row; the grid wrapper above replaces that */
+.site-footer .footer-grid { display: grid; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .derma-hero-grid { grid-template-columns: 1fr; }
+  .svc-grid { grid-template-columns: 1fr; }
+
+  /* posters become a swipeable strip, with the next one peeking in */
+  .media {
+    max-width: none; grid-template-columns: none;
+    grid-auto-flow: column; grid-auto-columns: min(72%, 300px);
+    overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 10px;
+    overscroll-behavior-x: contain;
+  }
+  .media-item { scroll-snap-align: start; }
+  .media--solo { grid-auto-columns: min(86%, 340px); justify-self: start; overflow: visible; }
+
+  .results-item { flex-basis: calc((100% - 14px) / 2); }
+  .footer-grid { grid-template-columns: 1fr; }
+  .book-form--inline { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .book-form--inline { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .results-item { flex-basis: 100%; }
+}
